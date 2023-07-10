@@ -15,7 +15,7 @@
     "allowJs": true,
     "baseUrl": "./",
     "paths": {
-      "@/*":["src/*"]
+      "@/*": ["./src/*"]
     },
 
     /* Linting */
@@ -26,12 +26,13 @@
   },
   "include": [
     "src/**/*.ts",
-     "src/**/*.d.ts", 
-     "src/**/*.tsx", 
-     "src/**/*.vue",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
     "types/*.d.ts",
     "src/vite-env.d.ts",
-    "vite.config.ts"
+    "vite.config.ts",
+    "./auto-imports.d.ts"
   ],
   "references": [{ "path": "./tsconfig.node.json" }],
   "exclude": ["node_modules", "dist", "**/*.js"]
