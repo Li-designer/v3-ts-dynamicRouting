@@ -12,7 +12,10 @@
   "dependencies": {
     "@ant-design/icons-vue": "^6.1.0",
     "ant-design-vue": "^3.2.20",
+    "less": "^4.1.3",
     "recommended": "link:@vue/typescript/recommended",
+    "sass": "^1.63.6",
+    "unplugin-vue-components": "^0.25.1",
     "vue": "^3.2.47",
     "vue-router": "4"
   },

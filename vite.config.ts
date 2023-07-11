@@ -43,5 +43,31 @@ export default defineConfig({
     alias: {
       "@": path.resolve(__dirname, "src") // src 路径
     }
+  },
+  css: {
+    preprocessorOptions: {
+      less: {
+        javascriptEnabled: true, //注意，这一句是在less对象中，写在外边不起作用
+        modifyVars: {
+          //在这里进行主题的修改，参考官方配置属性
+          "@primary-color": "#1890ff",
+          "@link-color": "#1890ff", // 链接色
+          "@success-color": "#52c41a", // 成功色
+          "@warning-color": "#faad14", // 警告色
+          "@error-color": "#f5222d", // 错误色
+          "@font-size-base": "14px", // 主字号
+          "@heading-color": "rgba(0, 0, 0, 0.85)", // 标题色
+          "@text-color": "rgba(0, 0, 0, 0.65)", // 主文本色
+          "@text-color-secondary": "rgba(0, 0, 0, 0.45)", // 次文本色
+          "@disabled-color": "rgba(0, 0, 0, 0.25)", // 失效色
+          "@border-radius-base": "2px", // 组件/浮层圆角
+          "@border-color-base": "#d9d9d9", // 边框色
+          "@box-shadow-base": "0 2px 8px rgba(0, 0, 0, 0.15)" // 浮层阴影
+        }
+      },
+      scss: {
+        additionalData: `@import "./src/styles/mixins.scss";`
+      }
+    }
   }
 });

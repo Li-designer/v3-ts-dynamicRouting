@@ -1,44 +1,56 @@
 <script setup lang="ts">
   import subMenu from "./subMenu.vue";
-  import { MenuFoldOutlined, MenuUnfoldOutlined, PieChartOutlined } from "@ant-design/icons-vue";
+  import { PieChartOutlined } from "@ant-design/icons-vue";
   const list = [
     {
-      key: "1",
-      title: "Option 1"
+      key: "/dashBoard",
+      title: "数据面板"
     },
     {
-      key: "2",
-      title: "Navigation 2",
+      key: "",
+      title: "主页",
       children: [
         {
-          key: "2.1",
-          title: "Navigation 3",
-          children: [{ key: "2.1.1", title: "Option 2.1.1" }]
+          key: "/home",
+          title: "主页"
         }
       ]
     }
   ];
 
   const collapsed = ref<boolean>(false);
-  const selectedKeys = ref(["1"]);
-  const openKeys = ref(["2"]);
-  const toggleCollapsed = () => {
-    collapsed.value = !collapsed.value;
+  const router = useRouter();
+  const state = reactive({
+    collapsed: false,
+    selectedKeys: ["/dashBoard"],
+    openKeys: ["/dashBoard"],
+    preOpenKeys: ["/dashBoard"]
+  });
+
+  watch(
+    () => state.openKeys,
+    (_val, oldVal) => {
+      state.preOpenKeys = oldVal;
+    }
+  );
+
+  const menuClick = ({ item, key, keyPath }) => {
+    if (key) {
+      router.push(key);
+    }
   };
 </script>
 
 <template>
-  <div style="width: 256px">
-    <a-button type="primary" style="margin-bottom: 16px" @click="toggleCollapsed">
-      <MenuUnfoldOutlined v-if="collapsed" />
-      <MenuFoldOutlined v-else />
-    </a-button>
+  <div class="aMenu">
     <a-menu
-      v-model:openKeys="openKeys"
-      v-model:selectedKeys="selectedKeys"
+      v-model:openKeys="state.openKeys"
+      v-model:selectedKeys="state.selectedKeys"
       mode="inline"
-      theme="dark"
+      theme="light"
       :inline-collapsed="collapsed"
+      :style="{ height: '100%', borderRight: 0 }"
+      @click="menuClick"
     >
       <template v-for="item in list" :key="item.key">
         <template v-if="!item.children">
@@ -57,4 +69,8 @@
   </div>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+  .aMenu {
+    padding-top: 20px;
+  }
+</style>

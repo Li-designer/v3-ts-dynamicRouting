@@ -22,7 +22,7 @@
 <template>
   <router-view v-slot="{ Component, route }">
     <template v-if="Component">
-      <Transition mode="out-in">
+      <Transition name="slide-fade">
         <keep-alive :include="keepAliveList">
           <Suspense>
             <component :is="Component" :key="route.path" />
@@ -34,4 +34,4 @@
   </router-view>
 </template>
 
-<style scoped></style>
+<style lang="scss" scoped></style>
