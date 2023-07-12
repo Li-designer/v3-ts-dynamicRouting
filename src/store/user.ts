@@ -26,6 +26,7 @@ export const useUserStore = defineStore("user", {
       return state.token;
     },
     getUser(state) {
+      return state.userInfo
     },
   },
   actions: {
