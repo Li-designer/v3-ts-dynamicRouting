@@ -9,7 +9,8 @@
     "lint": "eslint --ext .ts,.vue src",
     "prettier": "prettier --write .",
     "commit": "git add . & cz",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "release": "release-it & standard-version"
   },
   "dependencies": {
     "@ant-design/icons-vue": "^6.1.0",
@@ -44,6 +45,8 @@
     "husky": "^8.0.3",
     "prettier": "2.8.8",
     "recommended": "^0.0.7",
+    "release-it": "^16.1.0",
+    "standard-version": "^9.5.0",
     "typescript": "^5.1.6",
     "unplugin-auto-import": "^0.16.6",
     "unplugin-vue-components": "^0.25.1",
