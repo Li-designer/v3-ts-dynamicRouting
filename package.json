@@ -8,9 +8,10 @@
     "preview": "vite preview",
     "lint": "eslint --ext .ts,.vue src",
     "prettier": "prettier --write .",
-    "commit": "git add . & cz",
     "prepare": "husky install",
-    "release": "release-it & standard-version"
+    "commit": "git add . & cz",
+    "release": "standard-version",
+    "version": "release-it"
   },
   "dependencies": {
     "@ant-design/icons-vue": "^6.1.0",
