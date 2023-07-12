@@ -3,7 +3,7 @@
   import { PieChartOutlined } from "@ant-design/icons-vue";
   const list = [
     {
-      key: "/dashBoard",
+      key: "/dashBoard/page",
       title: "数据面板"
     },
     {
@@ -11,7 +11,7 @@
       title: "主页",
       children: [
         {
-          key: "/home",
+          key: "/home/page",
           title: "主页"
         }
       ]

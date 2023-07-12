@@ -27,26 +27,19 @@ export const routes = [
     ]
   },
   {
-    path: "/",
+    path: "/login",
     name: "Page",
-    redirect: "/login",
-    children: [
-      {
-        path: "/login",
-        name: "Login",
-        meta: { title: "登录" },
-        component: () => import("@/views/login/index.vue")
-      }
-    ]
+    meta: { title: "登录" },
+    component: () => import("@/views/login/index.vue")
   },
   {
-    path: "",
+    path: "/home",
     name: "Home",
     component: LayOut,
     redirect: "/home",
     children: [
       {
-        path: "/home",
+        path: "/home/page",
         name: "HomePage",
         meta: {
           title: "主页",
@@ -57,13 +50,13 @@ export const routes = [
     ]
   },
   {
-    path: "",
+    path: "/dashBoard",
     name: "DashBoard",
     component: LayOut,
-    redirect: "/dashBoard",
+    redirect: "/dashBoard/page",
     children: [
       {
-        path: "/dashBoard",
+        path: "/dashBoard/page",
         name: "DashBoardPage",
         meta: {
           title: "数据面板",
