@@ -10,8 +10,7 @@
     "prettier": "prettier --write .",
     "prepare": "husky install",
     "commit": "git add . & cz",
-    "release": "standard-version",
-    "version": "release-it"
+    "release": "standard-version"
   },
   "dependencies": {
     "@ant-design/icons-vue": "^6.1.0",

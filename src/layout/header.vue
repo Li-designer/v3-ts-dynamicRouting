@@ -1,5 +1,16 @@
 <script setup lang="ts">
-  // const selectedKeys1 = ref<string[]>([]);
+  import { UserOutlined, LogoutOutlined, RollbackOutlined } from "@ant-design/icons-vue";
+  import type { MenuProps } from "ant-design-vue";
+  import { useUserStore } from "@/store/user";
+
+  const store = useUserStore();
+  const router = useRouter();
+  const handleMenuClick: MenuProps["onClick"] = (e: any) => {
+    if (e.key === "1") {
+      store.logout();
+      router.push("/login");
+    }
+  };
 </script>
 
 <template>
@@ -8,11 +19,25 @@
       <img src="~@/assets/image/feel.png" alt="" class="img" />
       <span>Ant Design Vue3 ts </span>
     </div>
-    <!-- <a-menu v-model:selectedKeys="selectedKeys1" theme="light" mode="horizontal" :style="{ lineHeight: '64px' }">
-      <a-menu-item key="1">nav 1</a-menu-item>
-      <a-menu-item key="2">nav 2</a-menu-item>
-      <a-menu-item key="3">nav 3</a-menu-item>
-    </a-menu> -->
+    <a-dropdown-button class="dropdown">
+      <span>
+        {{ store.getUserName }}
+        <i class="roles"> ({{ store.getUserRolesName?.join(" | ") }})</i>
+      </span>
+      <template #overlay>
+        <a-menu @click="handleMenuClick">
+          <a-menu-item key="1">
+            <rollback-outlined />
+            退出登录
+          </a-menu-item>
+          <a-menu-item key="2">
+            <logout-outlined />
+            切换角色
+          </a-menu-item>
+        </a-menu>
+      </template>
+      <template #icon><UserOutlined /></template>
+    </a-dropdown-button>
   </a-layout-header>
 </template>
 
@@ -20,6 +45,7 @@
   .header {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     background: #fff;
     box-shadow: 0 2px 8px #f0f1f2;
     position: fixed;
@@ -35,6 +61,11 @@
       .img {
         @include wh(30px, 30px);
         margin-right: 5px;
+      }
+    }
+    .dropdown {
+      .roles {
+        color: #f85b1b;
       }
     }
   }

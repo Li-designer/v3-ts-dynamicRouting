@@ -3,7 +3,7 @@ import "nprogress/nprogress.css";
 import router from "./router";
 import { getToken } from "@/utils/save";
 
-const TITLE = "学生综合测评";
+const TITLE = "ant-v3-ts";
 NProgress.configure({ showSpinner: false });
 const getPageTitle = (key: unknown) => {
   const hasKey = `${key}`;

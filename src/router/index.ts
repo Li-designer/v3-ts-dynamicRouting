@@ -27,6 +27,11 @@ export const routes = [
     ]
   },
   {
+    path: "/",
+    name: "LoginPage",
+    redirect: "/login"
+  },
+  {
     path: "/login",
     name: "Page",
     meta: { title: "登录" },
@@ -36,7 +41,7 @@ export const routes = [
     path: "/home",
     name: "Home",
     component: LayOut,
-    redirect: "/home",
+    redirect: "/home/page",
     children: [
       {
         path: "/home/page",

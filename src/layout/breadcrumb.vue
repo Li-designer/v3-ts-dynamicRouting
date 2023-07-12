@@ -16,7 +16,8 @@
     top: 0;
     margin: 16px 0;
     padding-left: 16px;
-    @include wh(1093px, 60px);
+    max-width: 1093px;
+    height: 60px;
     background-color: #fff;
   }
 </style>

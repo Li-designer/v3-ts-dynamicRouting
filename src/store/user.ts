@@ -1,10 +1,4 @@
-import {
-  cleanLocalStorage,
-  getLocal,
-  getToken,
-  readFromLocalStorage,
-  removeToken,
-} from "@/utils/save";
+import { cleanLocalStorage, getLocal, getToken, readFromLocalStorage, removeToken } from "@/utils/save";
 
 export const useUserStore = defineStore("user", {
   state: () => {
@@ -12,7 +6,7 @@ export const useUserStore = defineStore("user", {
       token: "" || getToken(),
       roleArr: readFromLocalStorage("roleArr"),
       role: "" || getLocal("role"), //当前角色默认Admin
-      userInfo: readFromLocalStorage("USER"),
+      userInfo: readFromLocalStorage("USER")
     };
   },
   getters: {
@@ -26,20 +20,29 @@ export const useUserStore = defineStore("user", {
       return state.token;
     },
     getUser(state) {
-      return state.userInfo
+      return state.userInfo;
     },
+    getUserName(state) {
+      return state.userInfo.username;
+    },
+    getUserRolesName(state) {
+      return state.userInfo.rolesName;
+    }
   },
   actions: {
     /**
      * @description 退出登录
      */
     logout() {
-      // this.token = "";
-      // this.roleArr = [];
-      // this.role = "";
-
+      this.token = "";
+      this.roleArr = [];
+      this.role = "";
+      this.userInfo = {};
       removeToken();
-      cleanLocalStorage("tabBar");
+      cleanLocalStorage("roleArr");
+      cleanLocalStorage("role");
+      cleanLocalStorage("USER");
+      
     }
   }
 });

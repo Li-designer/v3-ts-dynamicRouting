@@ -17,6 +17,7 @@
   if (formValue) {
     formState.username = formValue.username;
     formState.password = RSAdsc(formValue.password) as string;
+    formState.remember = true;
   }
 
   const onFinish = async (values: any) => {
@@ -29,7 +30,7 @@
     }
     delete values.remember;
     const { data } = await useRequset(userLogin, { ...values });
-    const userInfo = { id: data.id, roleName: data.roleName, username: data.username };
+    const userInfo = { id: data.id, rolesName: data.roleNames, username: data.username };
     setToken(data.accessToken);
     saveToLocalStorage({ name: "roleArr", content: data.roles });
     saveToLocalStorage({ name: "USER", content: userInfo });
