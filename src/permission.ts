@@ -2,6 +2,8 @@ import NProgress from "nprogress";
 import "nprogress/nprogress.css";
 import router from "./router";
 import { getToken } from "@/utils/save";
+import { useUserStore } from "./store/user";
+import { usePerStore } from "./store/permission";
 
 const TITLE = "ant-v3-ts";
 NProgress.configure({ showSpinner: false });
@@ -17,7 +19,7 @@ const getPageTitle = (key: unknown) => {
 const whiteList: string[] = ["/login"];
 
 /* 权限设置 */
-router.beforeEach((to: toRouteType, from, next) => {
+router.beforeEach(async (to: toRouteType, from, next) => {
   const hasToken = getToken();
 
   // ! 权限
@@ -27,15 +29,22 @@ router.beforeEach((to: toRouteType, from, next) => {
     next();
   } else {
     if (hasToken) {
-      if (to.name) {
-        next();
-      } else if (!to.name) {
-        next(`/404?redirect=${to.path}`);
+      const store = useUserStore();
+      const perStore = usePerStore();
+      const role = store.getRole;
+      if (!perStore.getAsyncRoute.length) {
+        try {
+          await perStore.getRoute(role);
+          next({ ...to, replace: true });
+        } catch (error) {
+          console.error(error);
+          next(`/login?redirect=${to.path}`);
+        }
       } else {
         next();
       }
     } else if (!hasToken) {
-      next(`/login`);
+      next(`/login?redirect=${to.path}`);
     }
   }
 });

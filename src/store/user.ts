@@ -5,7 +5,7 @@ export const useUserStore = defineStore("user", {
     return {
       token: "" || getToken(),
       roleArr: readFromLocalStorage("roleArr"),
-      role: "" || getLocal("role"), //当前角色默认Admin
+      role: [] || readFromLocalStorage("role"), //默认为空,切换角色使用单个角色
       userInfo: readFromLocalStorage("USER")
     };
   },
@@ -36,13 +36,13 @@ export const useUserStore = defineStore("user", {
     logout() {
       this.token = "";
       this.roleArr = [];
-      this.role = "";
+      this.role = [];
       this.userInfo = {};
       removeToken();
       cleanLocalStorage("roleArr");
       cleanLocalStorage("role");
       cleanLocalStorage("USER");
-      
+      cleanLocalStorage("asyncRoute");
     }
   }
 });

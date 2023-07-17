@@ -5,6 +5,12 @@ declare global {
     meta: {
       /* 缓存页面 */
       keepAlive?: Boolean;
+      /* 图标 */
+      icon?: string;
+      /* 排序 */
+      rank?: number;
+      /* 是否在菜单中显示 */
+      isShow?: Boolean;
     };
   }
 
@@ -17,7 +23,7 @@ declare global {
     /** 路由名字（保持唯一）`可选` */
     name?: string;
     /** `Layout`组件 `可选` */
-    component?: RouteComponent;
+    component?: RouteComponent | string;
     /** 路由重定向 `可选` */
     redirect?: string;
     meta?: {
@@ -25,6 +31,12 @@ declare global {
       title: string;
       /* 是否缓存页面 */
       keepAlive?: Boolean;
+      /* 图标 */
+      icon?: string;
+      /* 排序 */
+      rank?: number;
+      /* 是否在菜单中显示 */
+      isShow?: Boolean;
     };
     /** 子路由配置项 */
     children?: Array<RouteConfigsTable>;

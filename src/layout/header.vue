@@ -56,7 +56,8 @@
       @include fh();
       font-weight: 700;
       font-size: 20px;
-      @include wh(300px, 50px);
+      height: 50px;
+      font-family: "nosifer";
       background-color: #fff;
       .img {
         @include wh(30px, 30px);

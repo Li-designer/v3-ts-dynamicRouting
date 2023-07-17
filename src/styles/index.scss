@@ -128,11 +128,11 @@ div:focus {
   word-break: break-all;
 }
 
-//@font-face {
-//  font-family: "shscm";
-//  src: url("../assets/font/SourceHanSerifCN-Medium.ttf");
-//  font-style: normal;
-//}
+@font-face {
+ font-family: "nosifer";
+ src: url("@/assets/font/Nosifer.ttf");
+ font-style: normal;
+}
 // symbol
 .iconSvg {
   width: 1em;

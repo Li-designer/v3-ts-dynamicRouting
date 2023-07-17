@@ -29,6 +29,11 @@ export default ({ command, mode }: ConfigEnv): UserConfigExport => {
           target: "http://localhost:3000",
           changeOrigin: true,
           rewrite: path => path.replace(/^\/expert-adventure/, "/expert-adventure")
+        },
+        "/apifox": {
+          target: "http://127.0.0.1:4523/m1/2209443-0-default",
+          changeOrigin: true,
+          rewrite: path => path.replace(/^\/apifox/, "/apifox")
         }
       }
     },

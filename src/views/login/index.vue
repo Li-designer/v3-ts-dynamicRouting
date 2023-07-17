@@ -5,6 +5,7 @@
   import { readFromLocalStorage, saveToLocalStorage, setToken } from "@/utils/save";
   import { useUserStore } from "@/store/user";
   import { RSAdsc, RSAjsc } from "@/utils";
+
   const router = useRouter();
   const store = useUserStore();
   const formState = reactive<login.FormState>({
@@ -19,7 +20,10 @@
     formState.password = RSAdsc(formValue.password) as string;
     formState.remember = true;
   }
-
+  /**
+   * @description 登录
+   * @param values
+   */
   const onFinish = async (values: any) => {
     if (values.remember) {
       const form = {
@@ -33,10 +37,12 @@
     const userInfo = { id: data.id, rolesName: data.roleNames, username: data.username };
     setToken(data.accessToken);
     saveToLocalStorage({ name: "roleArr", content: data.roles });
+    saveToLocalStorage({ name: "role", content: data.roles });
     saveToLocalStorage({ name: "USER", content: userInfo });
     store.token = data.accessToken;
     store.roleArr = data.roles;
     store.userInfo = userInfo;
+    store.role = data.roles;
     router.push("/dashBoard/page");
   };
 

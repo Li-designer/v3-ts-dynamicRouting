@@ -11,21 +11,6 @@ const modules: Record<string, any> = import.meta.glob(["./modules/**/*.ts"], {
  * @keepAlive 是否缓存
  */
 export const routes = [
-  // 将匹配所有内容并将其放在 `route.params.pathMatch` 下
-  {
-    path: "/:pathMatch(.*)*",
-    name: "NotFound",
-    component: LayOut,
-    redirect: "error/404",
-    children: [
-      {
-        path: "error/404",
-        name: "Error",
-        meta: { title: "404" },
-        component: () => import("@/views/error/NotFound.vue")
-      }
-    ]
-  },
   {
     path: "/",
     name: "LoginPage",
@@ -48,6 +33,9 @@ export const routes = [
         name: "HomePage",
         meta: {
           title: "主页",
+          icon: "HeatMapOutlined",
+          rank: 1,
+          showParent: false,
           keepAlive: false
         },
         component: () => import("@/views/Home/index.vue")
@@ -65,6 +53,9 @@ export const routes = [
         name: "DashBoardPage",
         meta: {
           title: "数据面板",
+          icon: "PieChartOutlined",
+          rank: 2,
+          showParent: false,
           keepAlive: false
         },
         component: () => import("@/views/DashBoard/index.vue")
