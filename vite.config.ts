@@ -7,7 +7,9 @@ import { AntDesignVueResolver } from "unplugin-vue-components/resolvers";
 import * as process from "process";
 const root: string = process.cwd();
 // https://vitejs.dev/config/
-
+const pathResolve = (dir: string): string => {
+  return resolve(__dirname, ".", dir);
+};
 export default ({ command, mode }: ConfigEnv): UserConfigExport => {
   return {
     base: command !== "serve" ? "/" : "/",
@@ -72,6 +74,29 @@ export default ({ command, mode }: ConfigEnv): UserConfigExport => {
     resolve: {
       alias: {
         "@": path.resolve(__dirname, "src") // src 路径
+      }
+    },
+    build: {
+      sourcemap: false,
+      // 消除打包大小超过500kb警告
+      chunkSizeWarningLimit: 4000,
+      // 打包文件名
+      outDir: "dist",
+      minify: "terser",
+      terserOptions: {
+        compress: false,
+        mangle: false
+      },
+      rollupOptions: {
+        input: {
+          index: pathResolve("index.html")
+        },
+        // 静态资源分类打包
+        output: {
+          chunkFileNames: "static/js/[name]-[hash].js",
+          entryFileNames: "static/js/[name]-[hash].js",
+          assetFileNames: "static/[ext]/[name]-[hash].[ext]"
+        }
       }
     },
     css: {
